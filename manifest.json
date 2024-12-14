@@ -1,0 +1,20 @@
+{
+    "name": "NotionSpeadOut",
+    "description": "Spread Out Notion Databases Extension",
+    "version": "1.0",
+    "manifest_version": 3,
+    "permissions": ["tabs", "activeTab", "scripting"],
+    "host_permissions": ["<all_urls>"],
+    "action": {
+      "default_popup": "index.html",
+      "default_icon": "hello_extensions.png"
+    },
+    "content_scripts": [
+        {
+          "js": ["scripts/content.js"],
+          "matches": [
+            "https://www.notion.so/*"
+          ]
+        }
+      ]
+}
