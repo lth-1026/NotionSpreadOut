@@ -1,9 +1,11 @@
 // 페이지에서 텍스트 추출
 function getPageContent() {
-    const page = document.querySelector('.notion-collection-item[data-block-id]'); 
-    const id = page.getAttribute('data-block-id');
-    const pageContent = fetchNotionContent(id.replaceAll("-", ""));
-    console.log(pageContent);
+    const pages = document.querySelectorAll('.notion-collection-item[data-block-id]'); 
+    for (let page of pages) {
+        const id = page.getAttribute('data-block-id');
+        const pageContent = fetchNotionContent(id.replaceAll("-", ""));
+        console.log(pageContent);
+    }
     return pageContent || 'Not found Data';
 }
 
@@ -15,7 +17,6 @@ async function fetchNotionContent(id) {
     const iframe = document.createElement('iframe');
     iframe.src = targetUrl;
     iframe.style.display = 'none';
-
     const checkComplete = () => {
         const iframeDoc = iframe.contentWindow.document;
         const notionContent = iframeDoc.querySelector(".notion-page-content");
